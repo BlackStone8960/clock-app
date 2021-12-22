@@ -13,6 +13,11 @@ const options = {
   timeout: 0,
   offset: "10px",
   transition: transitions.FADE,
+  containerStyle: {
+    width: "200px",
+    // opacity: "0.6",
+    borderRadius: "16px",
+  },
 };
 
 ReactDOM.render(

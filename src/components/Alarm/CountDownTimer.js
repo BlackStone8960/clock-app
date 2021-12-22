@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useReducer } from "react";
+import LoadingAnimation from "../LoadingAnimation";
 import "./CountDownTimer.scss";
 
 const timeReducer = (state, action) => {
@@ -79,9 +80,20 @@ const CountDownTimer = ({ duration }) => {
   return (
     <div>
       {time && (
-        <span>
-          {`${time.days} days ${time.hours} hours ${time.minutes} minutes ${time.seconds} seconds`}
-        </span>
+        <>
+          <span className="count-number-wrapper">
+            <b className="count-number">{time.days}</b>days
+          </span>
+          <span className="count-number-wrapper">
+            <b className="count-number">{time.hours}</b>hours
+          </span>
+          <span className="count-number-wrapper">
+            <b className="count-number">{time.minutes}</b>minutes
+          </span>
+          <span className="count-number-wrapper">
+            <b className="count-number">{time.seconds}</b>seconds
+          </span>
+        </>
       )}
     </div>
   );

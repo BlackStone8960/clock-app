@@ -1,8 +1,14 @@
-.clock-container {
-  background-image: url("../../images/clock_background.png");
-  background-size: cover;
-  // margin: 10px auto;
-  width: 250px;
-  height: 250px;
-  position: relative;
+.clock-wrapper {
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .clock-container {
+    background-image: url("../../images/clock_background.png");
+    background-size: cover;
+    width: 250px;
+    height: 250px;
+    position: relative;
+  }
 }

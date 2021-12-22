@@ -51,7 +51,7 @@ const Alarm = () => {
 
   return (
     <div className="alert-wrapper">
-      <div>Next alert will be in</div>
+      <div className="alert-header">Next alert will be in</div>
       <div className="alert-container">
         <CountDownTimer duration={durationUntilNextAlarm} />
       </div>
