@@ -16,7 +16,7 @@ const DegreesDisplay = () => {
   }, [minuteHandDegree, hourHandDegree]);
   return (
     <div className="degrees-wrapper">
-      <div>The number of degrees between the minute hand and hour hand</div>
+      <div>Degrees between the minute hand and hour hand</div>
       <div className="degrees-container">
         <span className="degrees">{`${degrees}°`}</span>
       </div>

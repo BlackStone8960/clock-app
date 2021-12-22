@@ -1,16 +1,17 @@
 .degrees-wrapper {
   width: 300px;
   text-align: center;
-  font-weight: bold;
+  // font-weight: bold;
 
   .degrees-container {
-    width: 200px;
-    padding: 16px;
-    background-color: gray;
-    margin: 16px auto;
+    width: 100%;
+    // padding: 16px;
+    margin: 16px auto 0;
 
     .degrees {
-      color: white;
+      font-weight: bold;
+      font-size: 32px;
+      overflow-wrap: break-word;
     }
   }
 }

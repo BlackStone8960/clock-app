@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import fibonacci from "../../mathFunction/fibonacci";
 import CountDownTimer from "./CountDownTimer";
 import { useAlert } from "react-alert";
+import { useTimeContext } from "../../contexts/time";
 import "./Alarm.scss";
 
 // convert hour to milisecond by multipling this value
@@ -9,8 +10,9 @@ const CONVERT_HOUR_TO_MILISECOND = 60 * 60 * 1000;
 const CONVERT_SECOND_TO_MILISECOND = 1000;
 
 const Alarm = () => {
+  const { timerRef } = useTimeContext();
   const [durationUntilNextAlarm, setDurationUntilNextAlarm] = useState(null);
-  const [timerIndex, setTimerIndex] = useState(1);
+  const [timerIndex, setTimerIndex] = useState(1); // start an index of timer from 1
   const alert = useAlert();
 
   const alarmTimer = (duration) => {
@@ -48,6 +50,14 @@ const Alarm = () => {
       startAlarmTimer();
     }
   }, [timerIndex]);
+
+  useEffect(() => {
+    // stop timer when this component is unmounted
+    return () => {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+    };
+  }, []);
 
   return (
     <div className="alert-wrapper">

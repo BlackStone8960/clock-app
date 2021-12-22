@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useReducer } from "react";
-import LoadingAnimation from "../LoadingAnimation";
+import React, { useEffect, useState, useReducer, useRef } from "react";
+import { useTimeContext } from "../../contexts/time";
 import "./CountDownTimer.scss";
 
 const timeReducer = (state, action) => {
@@ -50,9 +50,9 @@ const timeReducer = (state, action) => {
 };
 
 const CountDownTimer = ({ duration }) => {
+  const { timerRef } = useTimeContext();
   const [time, dispatch] = useReducer(timeReducer, null);
   const [timerMoved, setTimerMoved] = useState(false);
-  const [timerId, setTimerId] = useState(null);
 
   useEffect(() => {
     if (duration) {
@@ -61,7 +61,7 @@ const CountDownTimer = ({ duration }) => {
         duration,
       });
       if (timerMoved) {
-        clearInterval(timerId);
+        clearInterval(timerRef.current);
         setTimerMoved(false); // reset timer
       }
     }
@@ -69,10 +69,9 @@ const CountDownTimer = ({ duration }) => {
 
   useEffect(() => {
     if (!timerMoved && time) {
-      const timer = setInterval(() => {
+      timerRef.current = setInterval(() => {
         dispatch({ type: "COUNT_DOWN" });
       }, 1000);
-      setTimerId(timer);
       setTimerMoved(true);
     }
   }, [time]);
