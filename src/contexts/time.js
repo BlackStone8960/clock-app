@@ -9,6 +9,7 @@ const TimeProvider = ({ children }) => {
   const [minuteHandDegree, setMinuteHandDegree] = useState(0);
   const [hourHandDegree, setHourHandDegree] = useState(0);
   const [digitalTime, setDigitalTime] = useState("");
+  // const [timeAppStarted, setTimeAppStarted] = useState(0);
 
   const updateAnalogClock = (moment) => {
     const second = moment.seconds() * 6;
@@ -28,6 +29,7 @@ const TimeProvider = ({ children }) => {
   useEffect(() => {
     const timer = setInterval(() => {
       const momentObj = moment(); // create moment object
+      // setTimeAppStarted(momentObj.valueOf()); // set the time when this app is started in mili seconds
       updateAnalogClock(momentObj);
       updateDigitalClock(momentObj);
     }, UPDATE_INTERVAL);
@@ -42,6 +44,7 @@ const TimeProvider = ({ children }) => {
         minuteHandDegree,
         hourHandDegree,
         digitalTime,
+        // timeAppStarted,
       }}
     >
       {children}
