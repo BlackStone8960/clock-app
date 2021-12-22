@@ -2,14 +2,13 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import moment from "moment";
 
 const TimeContext = createContext();
-const UPDATE_INTERVAL = 1000;
+const TIMER_UPDATE_INTERVAL = 1000;
 
 const TimeProvider = ({ children }) => {
   const [secondHandDegree, setSecondHandDegree] = useState(0);
   const [minuteHandDegree, setMinuteHandDegree] = useState(0);
   const [hourHandDegree, setHourHandDegree] = useState(0);
   const [digitalTime, setDigitalTime] = useState("");
-  // const [timeAppStarted, setTimeAppStarted] = useState(0);
 
   const updateAnalogClock = (moment) => {
     const second = moment.seconds() * 6;
@@ -29,10 +28,9 @@ const TimeProvider = ({ children }) => {
   useEffect(() => {
     const timer = setInterval(() => {
       const momentObj = moment(); // create moment object
-      // setTimeAppStarted(momentObj.valueOf()); // set the time when this app is started in mili seconds
       updateAnalogClock(momentObj);
       updateDigitalClock(momentObj);
-    }, UPDATE_INTERVAL);
+    }, TIMER_UPDATE_INTERVAL);
 
     return () => clearInterval(timer);
   }, []);
@@ -44,7 +42,6 @@ const TimeProvider = ({ children }) => {
         minuteHandDegree,
         hourHandDegree,
         digitalTime,
-        // timeAppStarted,
       }}
     >
       {children}
