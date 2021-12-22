@@ -3,14 +3,25 @@ import ReactDOM from "react-dom";
 import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
 import TimeProvider from "./contexts/time";
+import { transitions, positions, Provider as AlertProvider } from "react-alert";
+import AlertTemplate from "react-alert-template-basic";
 import "./index.scss";
 import "./reset.scss";
 
+const options = {
+  position: positions.BOTTOM_LEFT,
+  timeout: 0,
+  offset: "10px",
+  transition: transitions.FADE,
+};
+
 ReactDOM.render(
   <React.StrictMode>
-    <TimeProvider>
-      <App />
-    </TimeProvider>
+    <AlertProvider template={AlertTemplate} {...options}>
+      <TimeProvider>
+        <App />
+      </TimeProvider>
+    </AlertProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

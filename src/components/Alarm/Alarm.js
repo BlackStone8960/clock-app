@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import fibonacci from "../../mathFunction/fibonacci";
 import CountDownTimer from "./CountDownTimer";
-import "./Alert.scss";
+import { useAlert } from "react-alert";
+import "./Alarm.scss";
 
 // convert hour to milisecond by multipling this value
 const CONVERT_HOUR_TO_MILISECOND = 60 * 60 * 1000;
@@ -10,11 +11,14 @@ const CONVERT_SECOND_TO_MILISECOND = 1000;
 const Alarm = () => {
   const [durationUntilNextAlarm, setDurationUntilNextAlarm] = useState(null);
   const [timerIndex, setTimerIndex] = useState(1);
+  const alert = useAlert();
 
   const alarmTimer = (duration) => {
     return new Promise((resolve) => {
       setTimeout(() => {
-        alert(`${duration / CONVERT_SECOND_TO_MILISECOND} seconds passed!`);
+        alert.show(
+          `${duration / CONVERT_SECOND_TO_MILISECOND} seconds passed!`
+        );
         // alert(`${duration / CONVERT_HOUR_TO_MILISECOND} hours passed!`);
         resolve();
       }, duration);
@@ -36,7 +40,7 @@ const Alarm = () => {
   useEffect(() => {
     if (Number.isInteger(timerIndex)) {
       timerIndex === 1 &&
-        alert(
+        alert.show(
           "Alarms are scheduled by a time as determined by the Fibonacci sequence"
         );
       startAlarmTimer();

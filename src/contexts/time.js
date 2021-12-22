@@ -5,10 +5,10 @@ const TimeContext = createContext();
 const TIMER_UPDATE_INTERVAL = 1000;
 
 const TimeProvider = ({ children }) => {
-  const [secondHandDegree, setSecondHandDegree] = useState(0);
-  const [minuteHandDegree, setMinuteHandDegree] = useState(0);
-  const [hourHandDegree, setHourHandDegree] = useState(0);
-  const [digitalTime, setDigitalTime] = useState("");
+  const [secondHandDegree, setSecondHandDegree] = useState(null);
+  const [minuteHandDegree, setMinuteHandDegree] = useState(null);
+  const [hourHandDegree, setHourHandDegree] = useState(null);
+  const [digitalTime, setDigitalTime] = useState(null);
 
   const updateAnalogClock = (moment) => {
     const second = moment.seconds() * 6;
@@ -21,7 +21,7 @@ const TimeProvider = ({ children }) => {
   };
 
   const updateDigitalClock = (moment) => {
-    const formattedTime = moment.format("h:mm:ss a");
+    const formattedTime = moment.format("h:mm:ss A");
     setDigitalTime(formattedTime);
   };
 
