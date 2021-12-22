@@ -4,7 +4,17 @@ import "./CountDownTimer.scss";
 const timeReducer = (state = {}, action) => {
   switch (action.type) {
     case "SET_TIME":
-      return action.duration;
+      const { duration } = action;
+      const seconds = Math.floor(duration / 1000) % 60;
+      const minutes = Math.floor(duration / 1000 / 60) % 60;
+      const hours = Math.floor(duration / 1000 / 60 / 60) % 24;
+      const days = Math.floor(duration / 1000 / 60 / 60 / 24);
+      return {
+        days,
+        hours,
+        minutes,
+        seconds,
+      };
     case "DECREMENT_DAYS":
       return {
         days: state.days - 1,
@@ -39,6 +49,7 @@ const CountDownTimer = ({ duration }) => {
   // const { seconds, minutes, hours, days } = duration;
   const [time, dispatch] = useReducer(timeReducer, null);
   const [timerMoved, setTimerMoved] = useState(false);
+  const [timerId, setTimerId] = useState(null);
 
   useEffect(() => {
     if (duration) {
@@ -46,21 +57,24 @@ const CountDownTimer = ({ duration }) => {
         type: "SET_TIME",
         duration,
       });
-      if (timerMoved) setTimerMoved(false); // reset timer
+      if (timerMoved) {
+        clearInterval(timerId);
+        setTimerMoved(false); // reset timer
+      }
     }
   }, [duration]);
 
   useEffect(() => {
     if (!timerMoved && time) {
-      const timer = setInterval(() => {
-        countDown();
-      }, 1000);
+      const timer = setInterval(countDown, 1000);
+      setTimerId(timer);
       setTimerMoved(true);
-      return () => clearInterval(timer);
+      // return () => clearInterval(timer);
     }
   }, [time]);
 
   const countDown = () => {
+    console.log("countDown");
     if (
       time.days === 0 &&
       time.hours === 0 &&

@@ -43,21 +43,21 @@ const Alarm = () => {
     }
   }, [timerIndex]);
 
-  useEffect(() => {
-    if (Number.isInteger(durationUntilNextAlarm)) {
-      const seconds = Math.floor(durationUntilNextAlarm / 1000) % 60;
-      const minutes = Math.floor(durationUntilNextAlarm / 1000 / 60) % 60;
-      const hours = Math.floor(durationUntilNextAlarm / 1000 / 60 / 60) % 24;
-      const days = Math.floor(durationUntilNextAlarm / 1000 / 60 / 60 / 24);
-      setCountDownDuration({ seconds, minutes, hours, days });
-    }
-  }, [durationUntilNextAlarm]);
+  // useEffect(() => {
+  //   if (Number.isInteger(durationUntilNextAlarm)) {
+  //     const seconds = Math.floor(durationUntilNextAlarm / 1000) % 60;
+  //     const minutes = Math.floor(durationUntilNextAlarm / 1000 / 60) % 60;
+  //     const hours = Math.floor(durationUntilNextAlarm / 1000 / 60 / 60) % 24;
+  //     const days = Math.floor(durationUntilNextAlarm / 1000 / 60 / 60 / 24);
+  //     setCountDownDuration({ seconds, minutes, hours, days });
+  //   }
+  // }, [durationUntilNextAlarm]);
 
   return (
     <div className="alert-wrapper">
       <div>Next alert will be in</div>
       <div className="alert-container">
-        <CountDownTimer duration={countDownDuration} />
+        <CountDownTimer duration={durationUntilNextAlarm} />
       </div>
     </div>
   );
