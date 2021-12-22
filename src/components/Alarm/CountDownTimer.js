@@ -73,11 +73,6 @@ const CountDownTimer = ({ duration }) => {
       }, 1000);
       setTimerId(timer);
       setTimerMoved(true);
-      // return () => {
-      //   if (!timerMoved) return;
-      //   clearInterval(timer);
-      //   setTimerMoved(false);
-      // };
     }
   }, [time]);
 
