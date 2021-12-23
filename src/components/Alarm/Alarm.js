@@ -16,14 +16,14 @@ const Alarm = () => {
 
   const alarmTimer = (duration) => {
     return new Promise((resolve) => {
-      const durationHour = duration / CONVERT_HOUR_TO_MILISECOND;
-      // const durationSeconds = duration / CONVERT_SECOND_TO_MILISECOND;
-      const hoursExpression = durationHour === 1 ? "hour has" : "hours have";
-      // const secondsExpression =
-      //   durationSeconds === 1 ? "second has" : "seconds have";
+      // const durationHour = duration / CONVERT_HOUR_TO_MILISECOND;
+      const durationSeconds = duration / CONVERT_SECOND_TO_MILISECOND;
+      // const hoursExpression = durationHour === 1 ? "hour has" : "hours have";
+      const secondsExpression =
+        durationSeconds === 1 ? "second has" : "seconds have";
       setTimeout(() => {
-        reactAlert.show(`${durationHour} ${hoursExpression} has passed`);
-        // reactAlert.show(`${durationSeconds} ${secondsExpression} passed!`);
+        // reactAlert.show(`${durationHour} ${hoursExpression} has passed`);
+        reactAlert.show(`${durationSeconds} ${secondsExpression} passed!`);
         resolve();
       }, duration);
     });
@@ -31,8 +31,8 @@ const Alarm = () => {
 
   const startAlarmTimer = async () => {
     const alarmDurationHour = fibonacci(timerIndex); // how long does it take to alert next
-    // const alarmDuration = alarmDurationHour * CONVERT_SECOND_TO_MILISECOND; // for testing
-    const alarmDuration = alarmDurationHour * CONVERT_HOUR_TO_MILISECOND;
+    const alarmDuration = alarmDurationHour * CONVERT_SECOND_TO_MILISECOND; // for testing
+    // const alarmDuration = alarmDurationHour * CONVERT_HOUR_TO_MILISECOND;
     setDurationUntilNextAlarm(alarmDuration);
     await alarmTimer(alarmDuration); // wait until alert will be appeared
     setTimerIndex(timerIndex + 1); // set next timer's index

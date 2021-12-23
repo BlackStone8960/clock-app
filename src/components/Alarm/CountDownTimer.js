@@ -4,6 +4,7 @@ import "./CountDownTimer.scss";
 
 const timeReducer = (state, action) => {
   switch (action.type) {
+    // set timer by the duration passed from action
     case "SET_TIME":
       const { duration } = action;
       return {
@@ -12,10 +13,12 @@ const timeReducer = (state, action) => {
         minutes: Math.floor(duration / 1000 / 60) % 60, // convert miliseconds to minutes
         seconds: Math.floor(duration / 1000) % 60, // convert miliseconds to seconds
       };
+    // start count down
     case "COUNT_DOWN":
       const { days, hours, minutes, seconds } = state;
+      // if all counts are 0, return state as it is
       if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
-        return;
+        return state;
       } else if (hours === 0 && minutes === 0 && seconds === 0) {
         return {
           days: days - 1,
@@ -54,14 +57,16 @@ const CountDownTimer = ({ duration, setCurrentTimer }) => {
 
   useEffect(() => {
     if (duration) {
-      dispatch({
-        type: "SET_TIME",
-        duration,
-      });
+      // stop a timer if it is moving
       if (timerMoved) {
         clearInterval(timerRef.current);
         setTimerMoved(false); // reset timer
       }
+      // set timer by the duration passed from parent component
+      dispatch({
+        type: "SET_TIME",
+        duration,
+      });
     }
   }, [duration]);
 

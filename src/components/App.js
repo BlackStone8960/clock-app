@@ -14,8 +14,8 @@ function App() {
     <div className="main-wrapper">
       <div className="main-container">
         {(secondHandDegree || secondHandDegree === 0) &&
-        (minuteHandDegree || secondHandDegree === 0) &&
-        (hourHandDegree || secondHandDegree === 0) ? (
+        (minuteHandDegree || minuteHandDegree === 0) &&
+        (hourHandDegree || hourHandDegree === 0) ? (
           <>
             <DegreesDisplay />
             <Clock />
