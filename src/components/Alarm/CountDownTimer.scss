@@ -1,9 +1,13 @@
 .count-number-wrapper {
-  font-weight: bold;
-  margin-right: 8px;
+  overflow-wrap: break-word;
 
-  .count-number {
-    font-size: 52px;
+  .count-number-container {
+    font-weight: bold;
     margin-right: 8px;
+
+    .count-number {
+      font-size: 52px;
+      margin-right: 8px;
+    }
   }
 }

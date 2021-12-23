@@ -78,30 +78,30 @@ const CountDownTimer = ({ duration }) => {
   }, [time]);
 
   return (
-    <div>
+    <>
       {time ? (
-        <>
-          <span className="count-number-wrapper">
+        <div className="count-number-wrapper">
+          <span className="count-number-container">
             <b className="count-number">{time.days}</b>
             {time.days !== 1 ? "days" : "day"}
           </span>
-          <span className="count-number-wrapper">
+          <span className="count-number-container">
             <b className="count-number">{time.hours}</b>
             {time.hours !== 1 ? "hours" : "hour"}
           </span>
-          <span className="count-number-wrapper">
+          <span className="count-number-container">
             <b className="count-number">{time.minutes}</b>
             {time.minutes !== 1 ? "minutes" : "minute"}
           </span>
-          <span className="count-number-wrapper">
+          <span className="count-number-container">
             <b className="count-number">{time.seconds}</b>
             {time.seconds !== 1 ? "seconds" : "second"}
           </span>
-        </>
+        </div>
       ) : (
         <LoadingAnimation />
       )}
-    </div>
+    </>
   );
 };
 
