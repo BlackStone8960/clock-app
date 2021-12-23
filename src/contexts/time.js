@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useRef,
-} from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import moment from "moment";
 
 // create context to manage the time
@@ -18,7 +12,6 @@ const TimeProvider = ({ children }) => {
   const [minuteHandDegree, setMinuteHandDegree] = useState(null);
   const [hourHandDegree, setHourHandDegree] = useState(null);
   const [digitalTime, setDigitalTime] = useState(null);
-  const timerRef = useRef(null); // ref to an ID of alert timer
 
   const updateAnalogClock = (moment) => {
     // find degrees of each hand from 12 o'clock.
@@ -58,7 +51,6 @@ const TimeProvider = ({ children }) => {
         minuteHandDegree,
         hourHandDegree,
         digitalTime,
-        timerRef,
       }}
     >
       {children}

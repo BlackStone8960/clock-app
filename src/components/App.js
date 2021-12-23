@@ -19,11 +19,11 @@ function App() {
           <>
             <DegreesDisplay />
             <Clock />
+            <Alarm />
           </>
         ) : (
           <LoadingAnimation />
         )}
-        <Alarm />
       </div>
     </div>
   );

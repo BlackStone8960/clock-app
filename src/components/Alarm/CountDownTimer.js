@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useReducer } from "react";
-import { useTimeContext } from "../../contexts/time";
+import React, { useEffect, useState, useReducer, useRef } from "react";
 import LoadingAnimation from "../LoadingAnimation";
 import "./CountDownTimer.scss";
 
@@ -14,10 +13,8 @@ const timeReducer = (state, action) => {
         seconds: Math.floor(duration / 1000) % 60, // convert miliseconds to seconds
       };
     case "COUNT_DOWN":
-      console.log("countDown");
       const { days, hours, minutes, seconds } = state;
       if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
-        console.log("do nothing");
         return;
       } else if (hours === 0 && minutes === 0 && seconds === 0) {
         return {
@@ -50,10 +47,10 @@ const timeReducer = (state, action) => {
   }
 };
 
-const CountDownTimer = ({ duration }) => {
-  const { timerRef } = useTimeContext();
+const CountDownTimer = ({ duration, setCurrentTimer }) => {
   const [time, dispatch] = useReducer(timeReducer, null);
   const [timerMoved, setTimerMoved] = useState(false);
+  const timerRef = useRef(null); // ref of an ID of alert timer
 
   useEffect(() => {
     if (duration) {
@@ -73,6 +70,7 @@ const CountDownTimer = ({ duration }) => {
       timerRef.current = setInterval(() => {
         dispatch({ type: "COUNT_DOWN" });
       }, 1000);
+      setCurrentTimer(timerRef.current);
       setTimerMoved(true);
     }
   }, [time]);

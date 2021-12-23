@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTimeContext } from "../../contexts/time";
+import takeDiffInDegree from "../../mathFunction/takeDiffInDegree";
 import "./DegreesDisplay.scss";
 
 const DegreesDisplay = () => {
@@ -8,8 +9,10 @@ const DegreesDisplay = () => {
 
   useEffect(() => {
     if (minuteHandDegree && hourHandDegree) {
-      const degreesBetweenTwoHands =
-        Math.abs(hourHandDegree - minuteHandDegree) % 180;
+      const degreesBetweenTwoHands = takeDiffInDegree(
+        minuteHandDegree,
+        hourHandDegree
+      );
       setDegrees(degreesBetweenTwoHands);
     }
   }, [minuteHandDegree, hourHandDegree]);
