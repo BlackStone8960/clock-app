@@ -12,27 +12,27 @@ const Alarm = () => {
   const [durationUntilNextAlarm, setDurationUntilNextAlarm] = useState(null);
   const [timerIndex, setTimerIndex] = useState(1); // start an index of timer from 1
   const reactAlert = useAlert();
-  const [currentTimer, setCurrentTimer] = useState(null);
+  const [currentTimer, setCurrentTimer] = useState(null); // current countdown timer's ID
 
   const alarmTimer = (duration) => {
     return new Promise((resolve) => {
-      // const durationHour = duration / CONVERT_HOUR_TO_MILISECOND;
-      const durationSeconds = duration / CONVERT_SECOND_TO_MILISECOND;
-      // const hoursExpression = durationHour === 1 ? "hour has" : "hours have";
-      const secondsExpression =
-        durationSeconds === 1 ? "second has" : "seconds have";
+      const durationHour = duration / CONVERT_HOUR_TO_MILISECOND;
+      // const durationSeconds = duration / CONVERT_SECOND_TO_MILISECOND;
+      const hoursExpression = durationHour === 1 ? "hour has" : "hours have";
+      // const secondsExpression =
+      //   durationSeconds === 1 ? "second has" : "seconds have";
       setTimeout(() => {
-        // reactAlert.show(`${durationHour} ${hoursExpression} has passed`);
-        reactAlert.show(`${durationSeconds} ${secondsExpression} passed!`);
+        reactAlert.show(`${durationHour} ${hoursExpression} passed`);
+        // reactAlert.show(`${durationSeconds} ${secondsExpression} passed!`);
         resolve();
       }, duration);
     });
   };
 
   const startAlarmTimer = async () => {
-    const alarmDurationHour = fibonacci(timerIndex); // how long does it take to alert next
-    const alarmDuration = alarmDurationHour * CONVERT_SECOND_TO_MILISECOND; // for testing
-    // const alarmDuration = alarmDurationHour * CONVERT_HOUR_TO_MILISECOND;
+    const alarmDurationHour = fibonacci(timerIndex); // how long it takes to next alert
+    // const alarmDuration = alarmDurationHour * CONVERT_SECOND_TO_MILISECOND; // for testing
+    const alarmDuration = alarmDurationHour * CONVERT_HOUR_TO_MILISECOND;
     setDurationUntilNextAlarm(alarmDuration);
     await alarmTimer(alarmDuration); // wait until alert will be appeared
     setTimerIndex(timerIndex + 1); // set next timer's index
