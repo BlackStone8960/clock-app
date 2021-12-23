@@ -9,6 +9,7 @@ const DegreesDisplay = () => {
 
   useEffect(() => {
     if (minuteHandDegree && hourHandDegree) {
+      // take difference between two degrees
       const degreesBetweenTwoHands = takeDiffInDegree(
         minuteHandDegree,
         hourHandDegree
@@ -18,7 +19,7 @@ const DegreesDisplay = () => {
   }, [minuteHandDegree, hourHandDegree]);
   return (
     <div className="degrees-wrapper">
-      <div>Degrees between the minute hand and hour hand</div>
+      <div>Degrees between minute hand and hour hand</div>
       <div className="degrees-container">
         <span className="degrees">{`${degrees}°`}</span>
       </div>
