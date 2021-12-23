@@ -6,16 +6,16 @@ const ClockHand = ({ degree, type }) => {
     transform: `rotate(${degree}deg)`,
   };
   return type === "second" ? (
-    <div style={styles} className="clock_hand-wrapper" id="second_hand">
-      <div></div>
+    <div style={styles} className="clock-hand-wrapper" id="second-hand">
+      <div className="clock-hand"></div>
     </div>
   ) : type === "minute" ? (
-    <div style={styles} className="clock_hand-wrapper" id="minute_hand">
-      <div></div>
+    <div style={styles} className="clock-hand-wrapper" id="minute-hand">
+      <div className="clock-hand"></div>
     </div>
   ) : type === "hour" ? (
-    <div style={styles} className="clock_hand-wrapper" id="hour_hand">
-      <div></div>
+    <div style={styles} className="clock-hand-wrapper" id="hour-hand">
+      <div className="clock-hand"></div>
     </div>
   ) : (
     <></>

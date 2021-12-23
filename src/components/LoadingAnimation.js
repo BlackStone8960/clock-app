@@ -5,7 +5,7 @@ import "./LoadingAnimation.scss";
 const LoadingAnimation = () => {
   return (
     <div className="gif-wrapper">
-      <img src={LoadingGif} id="loading-gif" />
+      <img src={LoadingGif} id="loading-gif" alt="loading-gif" />
     </div>
   );
 };

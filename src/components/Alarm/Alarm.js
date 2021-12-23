@@ -30,7 +30,6 @@ const Alarm = () => {
   };
 
   const startAlarmTimer = async () => {
-    // console.log("startAlarmTimer");
     const alarmDurationHour = fibonacci(timerIndex); // how long does it take to alert next
     console.log(alarmDurationHour);
     const alarmDuration = alarmDurationHour * CONVERT_SECOND_TO_MILISECOND; // for testing

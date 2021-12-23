@@ -8,9 +8,8 @@ const DegreesDisplay = () => {
 
   useEffect(() => {
     if (minuteHandDegree && hourHandDegree) {
-      const degreesBetweenTwoHands = Math.abs(
-        hourHandDegree - minuteHandDegree
-      );
+      const degreesBetweenTwoHands =
+        Math.abs(hourHandDegree - minuteHandDegree) % 180;
       setDegrees(degreesBetweenTwoHands);
     }
   }, [minuteHandDegree, hourHandDegree]);

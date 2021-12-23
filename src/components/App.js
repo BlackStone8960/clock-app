@@ -13,7 +13,9 @@ function App() {
   return (
     <div className="main-wrapper">
       <div className="main-container">
-        {secondHandDegree && minuteHandDegree && hourHandDegree ? (
+        {(secondHandDegree || secondHandDegree === 0) &&
+        (minuteHandDegree || secondHandDegree === 0) &&
+        (hourHandDegree || secondHandDegree === 0) ? (
           <>
             <DegreesDisplay />
             <Clock />

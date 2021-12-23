@@ -10,11 +10,10 @@ import "./reset.scss";
 
 const options = {
   position: positions.BOTTOM_LEFT,
-  timeout: 0,
-  offset: "10px",
   transition: transitions.FADE,
   containerStyle: {
     borderRadius: "16px",
+    zIndex: 1000,
   },
 };
 
