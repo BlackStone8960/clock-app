@@ -19,7 +19,7 @@ const Alarm = () => {
     return new Promise((resolve) => {
       // const durationHour = duration / CONVERT_HOUR_TO_MILISECOND;
       const durationSeconds = duration / CONVERT_SECOND_TO_MILISECOND;
-      // const hoursExpression = durationHour === 1 ? "hour" : "hours"
+      // const hoursExpression = durationHour === 1 ? "hour" : "hours";
       const secondsExpression = durationSeconds === 1 ? "second" : "seconds";
       setTimeout(() => {
         // alert.show(`${durationHour} ${hoursExpression} has passed`);

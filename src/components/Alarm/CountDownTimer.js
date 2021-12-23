@@ -1,5 +1,6 @@
-import React, { useEffect, useState, useReducer, useRef } from "react";
+import React, { useEffect, useState, useReducer } from "react";
 import { useTimeContext } from "../../contexts/time";
+import LoadingAnimation from "../LoadingAnimation";
 import "./CountDownTimer.scss";
 
 const timeReducer = (state, action) => {
@@ -78,21 +79,27 @@ const CountDownTimer = ({ duration }) => {
 
   return (
     <div>
-      {time && (
+      {time ? (
         <>
           <span className="count-number-wrapper">
-            <b className="count-number">{time.days}</b>days
+            <b className="count-number">{time.days}</b>
+            {time.days !== 1 ? "days" : "day"}
           </span>
           <span className="count-number-wrapper">
-            <b className="count-number">{time.hours}</b>hours
+            <b className="count-number">{time.hours}</b>
+            {time.hours !== 1 ? "hours" : "hour"}
           </span>
           <span className="count-number-wrapper">
-            <b className="count-number">{time.minutes}</b>minutes
+            <b className="count-number">{time.minutes}</b>
+            {time.minutes !== 1 ? "minutes" : "minute"}
           </span>
           <span className="count-number-wrapper">
-            <b className="count-number">{time.seconds}</b>seconds
+            <b className="count-number">{time.seconds}</b>
+            {time.seconds !== 1 ? "seconds" : "second"}
           </span>
         </>
+      ) : (
+        <LoadingAnimation />
       )}
     </div>
   );
