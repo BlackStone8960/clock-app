@@ -56,7 +56,7 @@ const CountDownTimer = ({ duration, setCurrentTimer }) => {
   const timerRef = useRef(null); // ref of an ID of alert timer
 
   useEffect(() => {
-    if (duration) {
+    if (duration && duration.length !== 0) {
       // stop a timer if it is moving
       if (timerMoved) {
         clearInterval(timerRef.current);
@@ -65,7 +65,7 @@ const CountDownTimer = ({ duration, setCurrentTimer }) => {
       // set timer by the duration passed from parent component
       dispatch({
         type: "SET_TIME",
-        duration,
+        duration: duration[0],
       });
     }
   }, [duration]);

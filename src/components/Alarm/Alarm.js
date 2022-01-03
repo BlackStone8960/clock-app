@@ -28,7 +28,7 @@ const Alarm = () => {
   const startAlarmTimer = async () => {
     const alarmDurationHour = fibonacci(timerIndex); // how long it takes to next alert
     const alarmDuration = alarmDurationHour * CONVERT_HOUR_TO_MILISECOND;
-    setDurationUntilNextAlarm(alarmDuration);
+    setDurationUntilNextAlarm([alarmDuration, timerIndex]);
     await alarmTimer(alarmDuration); // wait until alert will be appeared
     setTimerIndex(timerIndex + 1); // set next timer's index
   };
